@@ -1,0 +1,47 @@
+<div *ngIf="timerVisible" class="flash-sales">
+  <h2 class="sub-title">Today's</h2>
+  <div class="timer-container">
+    <div class="header">
+      <h1>Flash Sales</h1>
+      <div class="timer">
+        <div class="timer-item">
+          <span class="timer-label">Days</span>
+          <span class="timer-value">{{ days }}</span>
+        </div>
+        <span class="timer-separator">:</span>
+        <div class="timer-item">
+          <span class="timer-label">Hours</span>
+          <span class="timer-value">{{ hours }}</span>
+        </div>
+        <span class="timer-separator">:</span>
+        <div class="timer-item">
+          <span class="timer-label">Minutes</span>
+          <span class="timer-value">{{ minutes }}</span>
+        </div>
+        <span class="timer-separator">:</span>
+        <div class="timer-item">
+          <span class="timer-label">Seconds</span>
+          <span class="timer-value">{{ seconds }}</span>
+        </div>
+      </div>
+      <div class="icon-container">
+        <i class="fas fa-chevron-left icon left-icon" (click)="owlFlash.prev()"></i>
+        <i class="fas fa-chevron-right icon right-icon" (click)="owlFlash.next()"></i>
+      </div>
+    </div>
+  </div>
+  <div class="product-carousel">
+    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <owl-carousel-o [options]="customOptions" #owlFlash>
+          <ng-container *ngFor="let product of products" >
+            <ng-template carouselSlide  >
+              <app-product-card [product]="product" [showOverlay]="true" (item)="getProduct($event)" ></app-product-card>
+              <!-- <app-second-product-component [product]="product" [showOverlay]="true"></app-second-product-component> -->
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</div>
